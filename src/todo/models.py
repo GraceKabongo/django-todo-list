@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Todo(models.Model):
+class Task(models.Model):
     
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=25)
     description = models.TextField(blank=True)
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)

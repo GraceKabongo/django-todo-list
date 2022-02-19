@@ -1,0 +1,29 @@
+{% extends 'master.html' %}
+
+
+{% block title %}
+    LOGIN
+{% endblock title %}
+
+
+{% block content %}
+    
+    <div class="card">
+        <div class="card-body" style="padding: 50px;">
+                <form method="post" class="task-form">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="task-field">
+                            <label for="{{ field.auto_id }}">{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                    {% endfor %}                        
+                    <span class="sign-up">Create an account <a href="{% url 'sign-up' %}">here</a> !</span>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
+    
+    

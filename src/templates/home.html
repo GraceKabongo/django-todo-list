@@ -1,0 +1,55 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block content %}
+
+        <div class="card">
+            <div class="header-card">
+                <div class="header-card-left">
+                    <h2>{{ day }}, {% now "jS" %}</h2>
+                    <h3>{% now "F"%}</h3>
+                </div>
+                <div class="header-card-right">
+                    <h2 class='logout'><a href="{% url 'logout'%}">Logout</a></h2>
+                    <button id="add-btn"> 
+                        <a href="{% url 'add-task' %}">+</a>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                
+                {% for task in tasks %}
+                  
+                    <div class="task">  
+                        <div class="task-body">
+                           
+                           {% if not task.completed %}
+                                <input type="checkbox" name="completed" id="{{ task.id }}" value="{{ completed }}" />
+                                <label><a href="{% url 'update-task' task.id %}">{{ task.title|capfirst }}</a></label>
+                                {% else %}
+                                <input type="checkbox" name="completed" id="{{ task.id }}" checked="checked" value="{{ completed }}" />
+                                <label><a href="{% url 'update-task' task.id %}"><strike>{{ task.title|capfirst }}</strike></a></label>
+                           {% endif %}
+                               
+                        </div>
+                        <div class="delete btn-delete">
+                            <input type="hidden" name="task_id" value="{{ task.id }}">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </div>
+                    </div>
+
+                    {% empty %}
+                        <h3>No Task</h3>
+
+                {% endfor %}
+            </div>
+        </div>
+        
+{% endblock content %}
+    
+
+{% block script %}
+    <script src="{% static 'js/home.js' %}"></script>
+{% endblock script %}
+    

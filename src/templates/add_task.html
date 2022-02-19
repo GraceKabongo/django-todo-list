@@ -1,0 +1,29 @@
+{% extends 'master.html' %}
+
+
+{% block title %}ADD-TASK{% endblock title %}
+
+{% block content %}
+    
+    <div class="card">
+        <div class="header-card">
+            <div class="header-card-left">
+                <h3><a href="{% url 'home'%}">X</a></h3>  
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="post" class="task-form">
+                {% csrf_token %}                    
+                {% for field in form %}
+                    <div class="task-field">
+                        <label for="{{ field.auto_id }}">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <input type="submit" value="Save">
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
+    
