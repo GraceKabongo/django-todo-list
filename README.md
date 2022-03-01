@@ -1,3 +1,3 @@
 # django-todo-list
 
-simple todo list app buil with django python
+##Simple todo list app buil with django python
